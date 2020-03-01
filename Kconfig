@@ -1,0 +1,11 @@
+# AM2320 temperature sensor configuration options
+
+# Copyright (c) 2019 Centaur Analytics, Inc
+# SPDX-License-Identifier: Apache-2.0
+
+config AM2320
+	bool "AM2320 Temperature Sensor"
+	select SENSOR
+	depends on I2C
+	help
+	  Enable driver for AM2320 temperature sensor.

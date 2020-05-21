@@ -118,14 +118,14 @@ static int AM2320_channel_get(struct device *dev, enum sensor_channel chan,
 	{
 		tmp = (s16_t)drv_data->temperature;
 		val->val1 = tmp / 10; /* uCelsius */
-		val->val2 = tmp % 10;
+		val->val2 = tmp % 10 * 100000;
 		return 0;
 	}
 	else if (chan == SENSOR_CHAN_HUMIDITY) 
 	{
 		tmp = (s16_t)drv_data->humidity;
 		val->val1 = tmp / 10; 
-		val->val2 = tmp % 10;
+		val->val2 = tmp % 10 * 100000;
 		return 0;
 	}
 	else return -ENOTSUP; 
@@ -167,7 +167,7 @@ static int AM2320_init(struct device *dev)
     if (i2c_configure(drv_data->i2c, I2C_SPEED_FAST | I2C_MODE_MASTER) < 0)
     {
         LOG_ERR("i2c_configure");
-    }
+    }//*/
 
 	/* Check the Device ID */
 	// rc = AM2320_device_id_check(dev);

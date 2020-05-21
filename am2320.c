@@ -25,7 +25,7 @@ LOG_MODULE_REGISTER(AM2320);
 static int AM2320_reg_read(struct device *dev, u8_t reg, u8_t count, u16_t *val)
 {
 	struct am2320_data *drv_data = dev->driver_data;
-	const struct am2320_dev_config *cfg = dev->config->config_info;
+	const struct am2320_dev_config *cfg = dev->config_info;
     
 	u8_t res = 0;
 	u8_t b[3], read[32];

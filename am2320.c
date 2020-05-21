@@ -31,7 +31,7 @@ static int AM2320_reg_read(struct device *dev, u8_t reg, u8_t count, u16_t *val)
 	u8_t b[3], read[32];
 	b[0] = 0; 
     i2c_write(drv_data->i2c, b, 1, cfg->i2c_addr);
-    k_sleep(10); 
+    k_msleep(10); 
 	b[0] = 3;
 	b[1] = reg; 
 	b[2]= count;
@@ -39,7 +39,7 @@ static int AM2320_reg_read(struct device *dev, u8_t reg, u8_t count, u16_t *val)
     {
 		res = -EIO;
     }
-    k_sleep(2);
+    k_msleep(2);
     if (i2c_read(drv_data->i2c, read, 1+1+count+2, cfg->i2c_addr) < 0) 
     {
 		res = -EIO;
@@ -162,7 +162,7 @@ static int AM2320_init(struct device *dev)
         __HAL_RCC_I2C1_RELEASE_RESET();
         LL_I2C_Enable(I2C1);
         LOG_ERR("LL_I2C_IsActiveFlag_BUSY");
-        k_sleep(1000);
+        k_msleep(1000);
 	}
     if (i2c_configure(drv_data->i2c, I2C_SPEED_FAST | I2C_MODE_MASTER) < 0)
     {
